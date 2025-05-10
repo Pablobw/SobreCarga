@@ -35,8 +35,18 @@ const Contact = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-yellow-400 mx-auto mb-8"></div>
           </div>
 
-          <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 bg-gradient-to-br from-black/80 via-purple-900/60 to-black/80 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-600/30 p-6 md:p-10 transition-all duration-700 delay-200 will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>  
-            <div className="w-full flex flex-col items-center text-center space-y-6 md:space-y-8">
+          <div className={`relative flex flex-col md:flex-row items-center gap-6 md:gap-10 bg-gradient-to-br from-black/80 via-purple-900/60 to-black/80 backdrop-blur-md rounded-3xl overflow-hidden shadow-2xl shadow-pink-600/30 p-6 md:p-10 transition-all duration-700 delay-200 will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>  
+            {/* Video de fondo borroso */}
+            <video
+              className="absolute inset-0 w-full h-full object-cover blur-sm brightness-75 z-0"
+              src="/videos/videouno.mp4"
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            {/* Contenido de la tarjeta */}
+            <div className="relative z-10 w-full flex flex-col items-center text-center space-y-6 md:space-y-8">
               <div>
                 <h4 className="font-bold text-white mb-1 text-lg">Email</h4>
                 <span className="text-gray-300 select-all text-base break-all">{email}</span>
