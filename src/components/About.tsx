@@ -45,7 +45,7 @@ const About = () => {
                 Somos cinco amigos de Santiago de Chile que fusionan el poder del rock con los ritmos contagiosos del funk. Nacidos de la pasión por la música que desafía lo convencional, Sobrecarga llega para sacudir la escena musical chilena.
               </p>
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                Con apenas cinco canciones, estamos comenzando nuestro viaje, pero cada nota está cargada de energía e intensidad. Nuestra música es un reflejo de nuestras influencias diversas y nuestra dedicación a crear algo verdaderamente único.
+                Con apenas tres canciones, estamos comenzando nuestro viaje, pero cada nota está cargada de energía e intensidad. Nuestra música es un reflejo de nuestras influencias diversas y nuestra dedicación a crear algo verdaderamente único.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mt-6 sm:mt-8">
