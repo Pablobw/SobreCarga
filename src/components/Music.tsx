@@ -4,11 +4,9 @@ import { useInView } from 'react-intersection-observer';
 
 // Lista simulada de canciones
 const songList = [
-  { id: 1, title: "Da Lo Mismo", duration: "3:45" },
-  { id: 2, title: "No Es Un Juego", duration: "4:12" },
-  { id: 3, title: "Sobrecarga Mental", duration: "3:28" },
-  { id: 4, title: "Conexión Eléctrica", duration: "5:02" },
-  { id: 5, title: "Ritmo Neural", duration: "3:55" }
+  { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/public/images/DaLoMismo.png" },
+  { id: 2, title: "No Es Un Juego", duration: "4:12", logo: "/public/images/NoEsUnJuego.png" },
+  { id: 3, title: "Tus Ojos", duration: "3:28", logo: "/public/images/DaLoMismo2.png" }
 ];
 
 const Music = () => {
@@ -128,11 +126,11 @@ const Music = () => {
             <div className="p-6 md:p-8">
               {/* Cover y controles principales */}
               <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center mb-8">
-                <div className="w-full max-w-[200px] relative group">
+                <div className="w-full max-w-[220px] h-[220px] mx-auto relative group flex items-center justify-center bg-black/80 rounded-xl shadow-lg overflow-hidden">
                   <img 
-                    src="https://i.ibb.co/Vgc7kYL/sobrecarga-neon-logo.png" 
-                    alt="Portada del álbum" 
-                    className="w-full rounded-lg shadow-lg"
+                    src={songList[currentSong].logo}
+                    alt={`Logo de ${songList[currentSong].title}`}
+                    className="w-full h-full object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button 
