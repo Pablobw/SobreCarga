@@ -1,4 +1,3 @@
-import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { MapPin, Instagram } from 'lucide-react';
 import { BiLogoGmail  } from "react-icons/bi";
