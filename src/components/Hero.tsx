@@ -35,7 +35,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black">
         {/* Logo de fondo con animación */}
         <img 
-          src="/images/logos/Logo1.png" 
+          src="/public/logos/Logo1.png" 
           alt="Sobrecarga Logo"
           className="absolute inset-0 w-full h-full object-contain md:object-cover opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none transition-opacity duration-500"
           style={{ animationDuration: '4s', opacity: logoOpacity * 0.3 }}

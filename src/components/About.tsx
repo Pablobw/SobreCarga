@@ -31,7 +31,7 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className={`transition-all duration-700 delay-200 transform ${inView ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
               <img 
-                src="/images/logos/Logo2.JPG" 
+                src="/public/logos/Logo2.JPG" 
                 alt="Sobrecarga Logo 2" 
                 className="w-full max-w-md mx-auto rounded-lg shadow-2xl shadow-pink-600/20 hover:shadow-cyan-400/20 transition-all duration-300"
               />
