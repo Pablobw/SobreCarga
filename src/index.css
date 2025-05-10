@@ -10,7 +10,7 @@
 
 /* Scrollbar personalizado */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -29,11 +29,13 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   font-family: 'Archivo', sans-serif;
   @apply bg-black text-white;
+  overflow-x: hidden;
 }
 
 /* Animación de efecto máquina de escribir */
@@ -121,4 +123,52 @@ body {
 /* Dark theme */
 .bg-dark {
   @apply bg-black;
+}
+
+/* Mejoras de responsividad */
+@media (max-width: 640px) {
+  html {
+    scroll-padding-top: 60px;
+  }
+  
+  .animate-typewriter {
+    animation: typing 2s steps(30) 1s both;
+  }
+  
+  .animate-text-glow {
+    animation: textGlow 1.5s ease-in-out infinite alternate;
+  }
+}
+
+/* Optimizaciones para dispositivos móviles */
+@media (hover: none) {
+  .hover\:scale-105 {
+    transform: none !important;
+  }
+  
+  .hover\:shadow-lg {
+    box-shadow: none !important;
+  }
+}
+
+/* Mejoras de accesibilidad */
+.focus-visible:focus {
+  outline: 2px solid var(--color-neon-cyan);
+  outline-offset: 2px;
+}
+
+/* Transiciones suaves */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+/* Mejoras de rendimiento */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
 }
