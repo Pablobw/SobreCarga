@@ -8,6 +8,22 @@ const Contact = () => {
     threshold: 0.1,
   });
 
+  // Datos de contacto
+  const email = 'acunarojasvictor@gmail.com';
+  const subject = 'Contacto para Sobrecarga';
+  const body = 'Hola, me gustaría contactar con la banda Sobrecarga.';
+
+  // Detectar si es móvil
+  const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+  // Enlace mailto para móvil
+  const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+  // Enlaces para cada servicio
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const yahooUrl = `https://compose.mail.yahoo.com/?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
   // Función para abrir el cliente de correo
   const handleContactClick = (email: string) => {
     window.location.href = `mailto:${email}?subject=Contacto%20para%20Sobrecarga&body=Hola,%20me%20gustaría%20contactar%20con%20la%20banda%20Sobrecarga.`;
@@ -43,12 +59,12 @@ const Contact = () => {
                   <Mail className="w-6 h-6 text-pink-500 mt-1" />
                   <div>
                     <h4 className="font-bold text-white mb-1">Email</h4>
-                    <button 
-                      onClick={() => handleContactClick('contacto@sobrecarga.cl')}
-                      className="text-gray-400 hover:text-cyan-400 transition-colors duration-200"
-                    >
-                      contacto@sobrecarga.cl
-                    </button>
+                    <span className="text-gray-400 select-all">{email}</span>
+                    <div className="flex gap-2 mt-2">
+                      <a href={isMobile ? mailtoUrl : gmailUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-pink-500 to-cyan-400 text-white rounded-lg text-xs font-bold hover:from-pink-400 hover:to-cyan-300 transition-all">Gmail</a>
+                      <a href={isMobile ? mailtoUrl : outlookUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg text-xs font-bold hover:from-blue-500 hover:to-cyan-300 transition-all">Outlook</a>
+                      <a href={isMobile ? mailtoUrl : yahooUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-400 text-white rounded-lg text-xs font-bold hover:from-purple-500 hover:to-pink-300 transition-all">Yahoo</a>
+                    </div>
                   </div>
                 </div>
                 

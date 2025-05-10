@@ -20,9 +20,21 @@ const Music = () => {
     triggerOnce: false,
     threshold: 0.1,
   });
+  const [volume, setVolume] = useState(0.8);
 
   // URLs de demos para representar las canciones (usamos la misma para todas como ejemplo)
   const audioUrl = songList[currentSong].audio;
+
+  // Lógica para doble clic en 'atrás'
+  const lastBackClick = useRef<number>(0);
+  const backClickTimeout = useRef<number | null>(null);
+
+  // Formatear tiempo mm:ss
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  };
 
   useEffect(() => {
     // Crear un elemento de audio
@@ -68,6 +80,12 @@ const Music = () => {
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
   const handleTimeUpdate = () => {
     if (audioRef.current) {
       setCurrentTime(audioRef.current.currentTime);
@@ -101,16 +119,30 @@ const Music = () => {
     }
   };
 
-  const playSong = (index: number) => {
-    setCurrentSong(index);
-    setIsPlaying(true);
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value) / 100;
+    setVolume(newVolume);
   };
 
-  // Formatear tiempo mm:ss
-  const formatTime = (time: number) => {
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+  const handlePrev = () => {
+    const now = Date.now();
+    if (now - lastBackClick.current < 600) {
+      // Doble clic: ir a la canción anterior
+      setCurrentSong((prev) => (prev === 0 ? songList.length - 1 : prev - 1));
+      setIsPlaying(true);
+      if (backClickTimeout.current) clearTimeout(backClickTimeout.current);
+    } else {
+      // Un solo clic: reiniciar la canción
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        setIsPlaying(true);
+      }
+      // Si no hay segundo clic, no hacer nada más
+      backClickTimeout.current = setTimeout(() => {
+        backClickTimeout.current = null;
+      }, 600);
+    }
+    lastBackClick.current = now;
   };
 
   return (
@@ -177,7 +209,7 @@ const Music = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6">
                       <button 
-                        onClick={() => setCurrentSong((prev) => (prev === 0 ? songList.length - 1 : prev - 1))}
+                        onClick={handlePrev}
                         className="text-gray-400 hover:text-white transition-colors duration-200"
                       >
                         <SkipBack size={24} />
@@ -202,7 +234,8 @@ const Music = () => {
                         type="range" 
                         min="0" 
                         max="100" 
-                        defaultValue="80"
+                        value={volume * 100}
+                        onChange={handleVolumeChange}
                         className="w-20 h-1 bg-gray-700 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-3 [&::-webkit-slider-thumb]:w-3 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-cyan-400"
                       />
                     </div>
