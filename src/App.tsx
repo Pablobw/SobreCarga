@@ -6,25 +6,27 @@ import Music from './components/Music';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import { Loader } from './components/Loader';
 
 function App() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
+    // Simular tiempo de carga para mostrar la animación
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
     
-    window.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => clearTimeout(timer);
   }, []);
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
-    <div className="app">
-      <Navbar scrollPosition={scrollPosition} />
+    <div className="bg-dark text-white overflow-hidden">
+      <Navbar />
       <main>
         <Hero />
         <About />

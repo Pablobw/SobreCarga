@@ -1,48 +1,67 @@
-import React, { useEffect, useRef } from 'react';
-import { useInView } from '../hooks/useInView';
+import React from 'react';
+import { Zap, Heart, Flame } from 'lucide-react';
+import { useInView } from 'react-intersection-observer';
 
-const About: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const textRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  
-  const isSectionVisible = useInView(sectionRef, { threshold: 0.1 });
-  const isTitleVisible = useInView(titleRef, { threshold: 0.5 });
-  const isTextVisible = useInView(textRef, { threshold: 0.3 });
-  const isImageVisible = useInView(imageRef, { threshold: 0.3 });
-  
-  useEffect(() => {
-    if (isSectionVisible && sectionRef.current) {
-      sectionRef.current.classList.add('visible');
-    }
-  }, [isSectionVisible]);
+const About = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: false,
+    threshold: 0.1,
+  });
 
   return (
-    <section id="about" className="about" ref={sectionRef}>
-      <div className="container">
-        <h2 ref={titleRef} className={`section-title ${isTitleVisible ? 'visible' : ''}`}>
-          <span className="accent">Sobre</span> Nosotros
-        </h2>
-        
-        <div className="about-content">
-          <div 
-            ref={textRef} 
-            className={`about-text ${isTextVisible ? 'visible' : ''}`}
-          >
-            <p>Somos una banda de rock y funk de Santiago de Chile, formada por dos músicos apasionados con un sonido único y energético que fusiona lo mejor de ambos mundos.</p>
-            
-            <p>Nacimos en 2023 con la visión de crear música que rompa con lo convencional, mezclando ritmos potentes de funk con la actitud del rock. Nuestra propuesta sonora se caracteriza por bajos enérgicos, baterías contundentes y melodías que invitan a moverte.</p>
-            
-            <p>Con apenas 5 canciones en nuestro repertorio, estamos en el inicio de nuestra aventura musical, pero con grandes ambiciones y proyectos para el futuro cercano. Nuestras letras hablan de experiencias personales, la vida en Santiago y reflexiones sobre el mundo actual.</p>
+    <section 
+      id="nosotros" 
+      className="py-20 relative"
+      ref={ref}
+    >
+      {/* Fondo con efecto */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black to-purple-900/30 z-0"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          <div className={`mb-12 transition-all duration-700 transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 text-center">
+              <span className="font-['Permanent_Marker'] bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 text-transparent bg-clip-text">
+                Sobre Nosotros
+              </span>
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-cyan-400 mx-auto mb-8"></div>
           </div>
-          
-          <div 
-            ref={imageRef} 
-            className={`about-image ${isImageVisible ? 'visible' : ''}`}
-          >
-            <div className="image-container">
-              <img src="https://images.pexels.com/photos/167635/pexels-photo-167635.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Sobrecarga - Banda de Rock/Funk" />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div className={`transition-all duration-700 delay-200 transform ${inView ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
+              <img 
+                src="https://i.ibb.co/NKH8yCf/sobrecarga-corazon.png" 
+                alt="Sobrecarga Artwork" 
+                className="w-full max-w-md mx-auto rounded-lg shadow-2xl shadow-pink-600/20 hover:shadow-cyan-400/20 transition-all duration-300"
+              />
+            </div>
+
+            <div className={`space-y-6 transition-all duration-700 delay-400 transform ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
+              <h3 className="text-2xl font-bold text-yellow-400">
+                Somos más que una banda
+              </h3>
+              <p className="text-gray-300 leading-relaxed">
+                Somos un dúo de Santiago de Chile que fusiona el poder del rock con los ritmos contagiosos del funk. Nacidos de la pasión por la música que desafía lo convencional, Sobrecarga llega para sacudir la escena musical chilena.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Con apenas cinco canciones, estamos comenzando nuestro viaje, pero cada nota está cargada de energía e intensidad. Nuestra música es un reflejo de nuestras influencias diversas y nuestra dedicación a crear algo verdaderamente único.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+                <div className="bg-black/40 backdrop-blur-sm p-4 rounded-lg border border-pink-500/20 hover:border-pink-500/50 transition-colors duration-300 text-center group">
+                  <Zap className="w-10 h-10 text-pink-500 mx-auto mb-2 group-hover:text-yellow-400 transition-colors duration-300" />
+                  <h4 className="font-bold text-white">Energía</h4>
+                </div>
+                <div className="bg-black/40 backdrop-blur-sm p-4 rounded-lg border border-cyan-400/20 hover:border-cyan-400/50 transition-colors duration-300 text-center group">
+                  <Heart className="w-10 h-10 text-cyan-400 mx-auto mb-2 group-hover:text-pink-500 transition-colors duration-300" />
+                  <h4 className="font-bold text-white">Pasión</h4>
+                </div>
+                <div className="bg-black/40 backdrop-blur-sm p-4 rounded-lg border border-yellow-400/20 hover:border-yellow-400/50 transition-colors duration-300 text-center group">
+                  <Flame className="w-10 h-10 text-yellow-400 mx-auto mb-2 group-hover:text-cyan-400 transition-colors duration-300" />
+                  <h4 className="font-bold text-white">Intensidad</h4>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,3 +1,124 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --color-neon-pink: rgb(255, 0, 255);
+  --color-neon-cyan: rgb(0, 255, 255);
+  --color-neon-yellow: rgb(255, 255, 0);
+}
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ff00ff, #00ffff);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #ff50ff, #50ffff);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: 'Archivo', sans-serif;
+  @apply bg-black text-white;
+}
+
+/* Animación de efecto máquina de escribir */
+.animate-typewriter {
+  overflow: hidden;
+  display: inline-block;
+  white-space: nowrap;
+  animation: typing 3s steps(40) 1s both;
+}
+
+@keyframes typing {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Animación de brillo de texto */
+.animate-text-glow {
+  animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes textGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5),
+                 0 0 15px rgba(255, 0, 255, 0.5),
+                 0 0 20px rgba(255, 0, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5),
+                 0 0 20px rgba(0, 255, 255, 0.5),
+                 0 0 30px rgba(0, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 15px rgba(255, 255, 0, 0.5),
+                 0 0 25px rgba(255, 255, 0, 0.5),
+                 0 0 35px rgba(255, 255, 0, 0.5);
+  }
+}
+
+/* Animación para el indicador de scroll */
+@keyframes scrollIndicator {
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(8px); opacity: 0; }
+}
+
+.animate-scrollIndicator {
+  animation: scrollIndicator 1.5s ease-in-out infinite;
+}
+
+/* Animación para las barras de sonido */
+@keyframes soundbar {
+  0%, 100% { height: 30%; }
+  50% { height: 100%; }
+}
+
+.animate-soundbar {
+  animation: soundbar 1s ease-in-out infinite;
+  height: 16px;
+}
+
+/* Aspect ratio para imágenes */
+.aspect-w-4 {
+  position: relative;
+  padding-bottom: calc(var(--tw-aspect-h) / var(--tw-aspect-w) * 100%);
+}
+
+.aspect-h-3 {
+  --tw-aspect-h: 3;
+}
+
+.aspect-w-4 {
+  --tw-aspect-w: 4;
+}
+
+.aspect-w-4 > * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Dark theme */
+.bg-dark {
+  @apply bg-black;
+}
