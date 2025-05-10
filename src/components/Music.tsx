@@ -4,15 +4,17 @@ import { useInView } from 'react-intersection-observer';
 
 // Lista simulada de canciones
 const songList = [
-  { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/public/images/DaLoMismo.png" },
-  { id: 2, title: "No Es Un Juego", duration: "4:12", logo: "/public/images/NoEsUnJuego.png" },
-  { id: 3, title: "Tus Ojos", duration: "3:28", logo: "/public/images/DaLoMismo2.png" }
+  { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/images/DaLoMismo.png", audio: "/audios/da-lo-mismo.mp3" },
+  { id: 2, title: "No Es Un Juego", duration: "4:12", logo: "/images/NoEsUnJuego.png", audio: "/audios/no-es-un-juego.mp3" },
+  { id: 3, title: "Tus Ojos", duration: "3:28", logo: "/images/DaLoMismo2.png", audio: "/audios/tus-ojos.mp3" }
 ];
 
 const Music = () => {
   const [currentSong, setCurrentSong] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -20,7 +22,7 @@ const Music = () => {
   });
 
   // URLs de demos para representar las canciones (usamos la misma para todas como ejemplo)
-  const audioUrl = "https://cdn.pixabay.com/download/audio/2022/11/22/audio_febc508520.mp3";
+  const audioUrl = songList[currentSong].audio;
 
   useEffect(() => {
     // Crear un elemento de audio
@@ -28,16 +30,18 @@ const Music = () => {
       audioRef.current = new Audio(audioUrl);
       
       // Actualizar el progreso mientras se reproduce
-      audioRef.current.addEventListener('timeupdate', updateProgress);
+      audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
       
       // Cuando termina la canción
       audioRef.current.addEventListener('ended', handleSongEnd);
+      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
     }
     
     return () => {
       if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', updateProgress);
+        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
         audioRef.current.removeEventListener('ended', handleSongEnd);
+        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
         audioRef.current.pause();
       }
     };
@@ -46,51 +50,52 @@ const Music = () => {
   // Actualizar la URL de audio cuando cambia la canción
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.src = audioUrl;
+      audioRef.current.load();
       if (isPlaying) {
         audioRef.current.play();
       }
     }
   }, [currentSong]);
 
-  const updateProgress = () => {
+  // Play/Pause control
+  useEffect(() => {
     if (audioRef.current) {
-      const value = (audioRef.current.currentTime / audioRef.current.duration) * 100;
-      setProgress(value || 0);
+      if (isPlaying) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
+
+  const handleTimeUpdate = () => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+      setDuration(audioRef.current.duration || 0);
+      setProgress((audioRef.current.currentTime / (audioRef.current.duration || 1)) * 100);
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (audioRef.current) {
+      setDuration(audioRef.current.duration || 0);
     }
   };
 
   const handleSongEnd = () => {
     if (currentSong < songList.length - 1) {
       setCurrentSong(currentSong + 1);
+      setIsPlaying(true);
     } else {
       setCurrentSong(0);
+      setIsPlaying(false);
     }
-  };
-
-  const togglePlay = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-      } else {
-        audioRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleNext = () => {
-    setCurrentSong((prev) => (prev === songList.length - 1 ? 0 : prev + 1));
-  };
-
-  const handlePrev = () => {
-    setCurrentSong((prev) => (prev === 0 ? songList.length - 1 : prev - 1));
   };
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
       const newValue = parseFloat(e.target.value);
-      const newTime = (newValue / 100) * audioRef.current.duration;
+      const newTime = (newValue / 100) * duration;
       audioRef.current.currentTime = newTime;
       setProgress(newValue);
     }
@@ -99,9 +104,13 @@ const Music = () => {
   const playSong = (index: number) => {
     setCurrentSong(index);
     setIsPlaying(true);
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
+  };
+
+  // Formatear tiempo mm:ss
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -134,7 +143,7 @@ const Music = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <button 
-                      onClick={togglePlay}
+                      onClick={() => setIsPlaying(!isPlaying)}
                       className="w-16 h-16 flex items-center justify-center rounded-full bg-pink-500/80 text-white hover:bg-pink-500 transition-colors duration-300"
                     >
                       {isPlaying ? <Pause size={30} /> : <Play size={30} />}
@@ -150,6 +159,10 @@ const Music = () => {
                   
                   {/* Barra de progreso */}
                   <div className="mb-4">
+                    <div className="flex justify-between text-xs text-gray-400 mb-1">
+                      <span>{formatTime(currentTime)}</span>
+                      <span>{formatTime(duration)}</span>
+                    </div>
                     <input 
                       type="range" 
                       min="0" 
@@ -164,19 +177,19 @@ const Music = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6">
                       <button 
-                        onClick={handlePrev}
+                        onClick={() => setCurrentSong((prev) => (prev === 0 ? songList.length - 1 : prev - 1))}
                         className="text-gray-400 hover:text-white transition-colors duration-200"
                       >
                         <SkipBack size={24} />
                       </button>
                       <button 
-                        onClick={togglePlay}
+                        onClick={() => setIsPlaying(!isPlaying)}
                         className="w-12 h-12 flex items-center justify-center rounded-full bg-pink-500 text-white hover:bg-pink-600 transition-colors duration-200"
                       >
                         {isPlaying ? <Pause size={20} /> : <Play size={20} />}
                       </button>
                       <button 
-                        onClick={handleNext}
+                        onClick={() => setCurrentSong((prev) => (prev === songList.length - 1 ? 0 : prev + 1))}
                         className="text-gray-400 hover:text-white transition-colors duration-200"
                       >
                         <SkipForward size={24} />
@@ -204,7 +217,7 @@ const Music = () => {
                   {songList.map((song, index) => (
                     <div 
                       key={song.id}
-                      onClick={() => playSong(index)}
+                      onClick={() => setCurrentSong(index)}
                       className={`flex items-center justify-between p-3 rounded-lg cursor-pointer transition-all duration-200 ${
                         currentSong === index 
                           ? 'bg-gradient-to-r from-pink-500/20 to-transparent border-l-4 border-pink-500' 
@@ -237,6 +250,14 @@ const Music = () => {
           </div>
         </div>
       </div>
+      <audio
+        ref={audioRef}
+        key={songList[currentSong].audio}
+        src={songList[currentSong].audio}
+        onTimeUpdate={handleTimeUpdate}
+        onLoadedMetadata={handleLoadedMetadata}
+        onEnded={handleSongEnd}
+      />
     </section>
   );
 };
