@@ -1,6 +1,6 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { Mail, MapPin, Instagram, Youtube, AlignJustify as Spotify } from 'lucide-react';
+import { MapPin, Instagram } from 'lucide-react';
 import { BiLogoGmail  } from "react-icons/bi";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
 import { FaYahoo } from "react-icons/fa";
@@ -14,25 +14,13 @@ const Contact = () => {
     threshold: 0.1,
   });
 
-  // Datos de contacto
   const email = 'acunarojasvictor@gmail.com';
   const subject = 'Contacto para Sobrecarga';
   const body = 'Hola, me gustaría contactar con la banda Sobrecarga.';
-
-  // Detectar si es móvil
   const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-
-  // Enlace mailto para móvil
   const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  // Enlaces para cada servicio
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-  // Función para abrir el cliente de correo
-  const handleContactClick = (email: string) => {
-    window.location.href = `mailto:${email}?subject=Contacto%20para%20Sobrecarga&body=Hola,%20me%20gustaría%20contactar%20con%20la%20banda%20Sobrecarga.`;
-  };
 
   return (
     <section 
