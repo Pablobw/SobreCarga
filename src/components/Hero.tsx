@@ -15,9 +15,15 @@ const Hero = () => {
     >
       {/* Fondo con efecto de neón */}
       <div className="absolute inset-0 bg-black">
+        {/* Logo de fondo con animación */}
+        <img 
+          src="/images/logos/Logo1.png" 
+          alt="Sobrecarga Logo"
+          className="absolute inset-0 w-full h-full object-contain md:object-cover opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none"
+          style={{ animationDuration: '4s' }}
+        />
         {/* Grid lines */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50"></div>
-        
         {/* Destellos de neón */}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
@@ -25,15 +31,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col items-center text-center">
-          {/* Logo grande */}
-          <div className={`transition-all duration-1000 transform ${inView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
-            <img 
-              src="https://i.ibb.co/hVbsBSh/sobrecarga-logo-neon.png" 
-              alt="Sobrecarga Logo"
-              className="w-full max-w-md mx-auto mb-8 animate-pulse"
-              style={{ animationDuration: '4s' }}
-            />
-          </div>
+          {/* Logo grande removido aquí, ahora es fondo */}
 
           {/* Tagline animado */}
           <div className={`overflow-hidden transition-all duration-1000 delay-300 ${inView ? 'opacity-100' : 'opacity-0'}`}>
