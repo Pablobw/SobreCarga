@@ -14,7 +14,6 @@ const About = () => {
       className="py-16 sm:py-20 relative"
       ref={ref}
     >
-      {/* Fondo con efecto */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-purple-900/30 z-0"></div>
       
       <div className="container mx-auto px-4 relative z-10">

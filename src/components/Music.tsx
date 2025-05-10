@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Volume2 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 
-// Lista simulada de canciones
 const songList = [
   { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/images/DaLoMismo.png", audio: "/audios/da-lo-mismo.mp3" },
   { id: 2, title: "No Es Un Juego", duration: "4:12", logo: "/images/NoEsUnJuego.png", audio: "/audios/no-es-un-juego.mp3" },
@@ -22,21 +21,13 @@ const Music = () => {
   });
   const [volume, setVolume] = useState(0.8);
   const [isVolumeVisible, setIsVolumeVisible] = useState(false);
-
-  // URLs de demos para representar las canciones
-  const audioUrl = songList[currentSong].audio;
-
-  // Lógica para doble clic en 'atrás'
   const lastBackClick = useRef<number>(0);
   const backClickTimeout = useRef<number | null>(null);
-
-  // Formatear tiempo mm:ss
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
   };
-
   const handleTimeUpdate = useCallback(() => {
     if (audioRef.current) {
       setCurrentTime(audioRef.current.currentTime);
@@ -44,13 +35,11 @@ const Music = () => {
       setProgress((audioRef.current.currentTime / (audioRef.current.duration || 1)) * 100);
     }
   }, []);
-
   const handleLoadedMetadata = useCallback(() => {
     if (audioRef.current) {
       setDuration(audioRef.current.duration || 0);
     }
   }, []);
-
   const handleSongEnd = useCallback(() => {
     if (currentSong < songList.length - 1) {
       setCurrentSong(currentSong + 1);
@@ -62,54 +51,34 @@ const Music = () => {
   }, [currentSong]);
 
   useEffect(() => {
-    // Crear un elemento de audio
-    if (!audioRef.current) {
-      audioRef.current = new Audio(audioUrl);
-      
-      // Actualizar el progreso mientras se reproduce
-      audioRef.current.addEventListener('timeupdate', handleTimeUpdate);
-      
-      // Cuando termina la canción
-      audioRef.current.addEventListener('ended', handleSongEnd);
-      audioRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
-    }
-    
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.removeEventListener('timeupdate', handleTimeUpdate);
-        audioRef.current.removeEventListener('ended', handleSongEnd);
-        audioRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
-        audioRef.current.pause();
-      }
-    };
-  }, [handleTimeUpdate, handleSongEnd, handleLoadedMetadata]);
-
-  // Actualizar la URL de audio cuando cambia la canción
-  useEffect(() => {
+    setProgress(0);
+    setCurrentTime(0);
+    setDuration(0);
     if (audioRef.current) {
-      audioRef.current.load();
+      audioRef.current.currentTime = 0;
       if (isPlaying) {
-        audioRef.current.play();
-      }
-    }
-  }, [currentSong]);
-
-  // Play/Pause control
-  useEffect(() => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.play();
+        audioRef.current.play().catch(() => setIsPlaying(false));
       } else {
         audioRef.current.pause();
       }
     }
-  }, [isPlaying]);
+  }, [currentSong]);
 
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
     }
   }, [volume]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.play().catch(() => setIsPlaying(false));
+      } else {
+        audioRef.current.pause();
+      }
+    }
+  }, [isPlaying]);
 
   const handleProgressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (audioRef.current) {
@@ -128,17 +97,14 @@ const Music = () => {
   const handlePrev = () => {
     const now = Date.now();
     if (now - lastBackClick.current < 600) {
-      // Doble clic: ir a la canción anterior
       setCurrentSong((prev) => (prev === 0 ? songList.length - 1 : prev - 1));
       setIsPlaying(true);
       if (backClickTimeout.current) clearTimeout(backClickTimeout.current);
     } else {
-      // Un solo clic: reiniciar la canción
       if (audioRef.current) {
         audioRef.current.currentTime = 0;
         setIsPlaying(true);
       }
-      // Si no hay segundo clic, no hacer nada más
       backClickTimeout.current = setTimeout(() => {
         backClickTimeout.current = null;
       }, 600);
@@ -164,9 +130,16 @@ const Music = () => {
           </div>
 
           <div className={`bg-black/60 backdrop-blur-md rounded-xl overflow-hidden shadow-2xl shadow-pink-600/20 transition-all duration-700 delay-200 transform will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-            {/* Reproductor de música custom */}
             <div className="p-4 sm:p-6 md:p-8">
-              {/* Cover y controles principales */}
+              <audio
+                ref={audioRef}
+                src={songList[currentSong].audio}
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedMetadata={handleLoadedMetadata}
+                onEnded={handleSongEnd}
+                style={{ display: 'none' }}
+                preload="auto"
+              />
               <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center mb-8">
                 <div className="w-full max-w-[180px] sm:max-w-[220px] h-[180px] sm:h-[220px] mx-auto relative group flex items-center justify-center bg-black/80 rounded-xl shadow-lg overflow-hidden">
                   <img 
@@ -192,7 +165,6 @@ const Music = () => {
                   </h3>
                   <p className="text-gray-400 mb-4 sm:mb-6">Sobrecarga</p>
                   
-                  {/* Barra de progreso */}
                   <div className="mb-4">
                     <div className="flex justify-between text-xs text-gray-400 mb-1">
                       <span>{formatTime(currentTime)}</span>
@@ -208,7 +180,6 @@ const Music = () => {
                     />
                   </div>
                   
-                  {/* Controles */}
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4 sm:gap-6">
                       <button 
@@ -257,7 +228,6 @@ const Music = () => {
                 </div>
               </div>
               
-              {/* Lista de canciones */}
               <div className="mt-8">
                 <h4 className="text-lg font-bold text-white mb-4">Lista de canciones</h4>
                 <div className="space-y-1">

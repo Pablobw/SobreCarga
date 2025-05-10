@@ -33,7 +33,6 @@ const Footer = () => {
         </div>
       </div>
       
-      {/* Efecto neón en footer */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400"></div>
     </footer>
   );

@@ -14,7 +14,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Cerrar menú al cambiar de ruta
   useEffect(() => {
     const handleRouteChange = () => {
       setIsMenuOpen(false);
@@ -24,7 +23,6 @@ const Navbar = () => {
     return () => window.removeEventListener('hashchange', handleRouteChange);
   }, []);
 
-  // Bloquear scroll cuando el menú está abierto
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -56,7 +54,6 @@ const Navbar = () => {
           </span>
         </a>
 
-        {/* Menú móvil */}
         <button 
           className="lg:hidden text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -70,7 +67,6 @@ const Navbar = () => {
           </div>
         </button>
 
-        {/* Menú desktop */}
         <div className="hidden lg:flex items-center gap-8">
           {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
             <a
@@ -84,7 +80,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Menú móvil dropdown */}
         <div 
           className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center gap-8 transform transition-all duration-500 ${
             isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
