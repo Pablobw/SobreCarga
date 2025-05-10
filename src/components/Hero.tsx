@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
 const Hero = () => {
@@ -6,6 +6,24 @@ const Hero = () => {
     triggerOnce: false,
     threshold: 0.1,
   });
+  const [logoOpacity, setLogoOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const hero = document.getElementById('inicio');
+      if (!hero) return;
+      const rect = hero.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      // Cuando el fondo está completamente visible, opacidad 1; cuando se va, opacidad 0
+      let opacity = 1;
+      if (rect.bottom < windowHeight) {
+        opacity = Math.max(0, rect.bottom / windowHeight);
+      }
+      setLogoOpacity(opacity);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <section 
@@ -19,14 +37,16 @@ const Hero = () => {
         <img 
           src="/images/logos/Logo1.png" 
           alt="Sobrecarga Logo"
-          className="absolute inset-0 w-full h-full object-contain md:object-cover opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none"
-          style={{ animationDuration: '4s' }}
+          className="absolute inset-0 w-full h-full object-contain md:object-cover opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none transition-opacity duration-500"
+          style={{ animationDuration: '4s', opacity: logoOpacity * 0.3 }}
         />
         {/* Grid lines */}
         <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50"></div>
         {/* Destellos de neón */}
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse"></div>
         <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        {/* Degradado inferior para transición suave */}
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
