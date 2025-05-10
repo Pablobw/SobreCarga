@@ -47,7 +47,7 @@ const Navbar = () => {
 
         {/* Menú desktop */}
         <div className="hidden lg:flex items-center gap-8">
-          {['inicio', 'nosotros', 'musica', 'galeria', 'contacto'].map((item) => (
+          {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
             <a
               key={item}
               href={`#${item}`}
@@ -65,7 +65,7 @@ const Navbar = () => {
             isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           } lg:hidden`}
         >
-          {['inicio', 'nosotros', 'musica', 'galeria', 'contacto'].map((item, index) => (
+          {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item, index) => (
             <a
               key={item}
               href={`#${item}`}
