@@ -52,8 +52,11 @@ const Hero = () => {
       <div className="container mx-auto px-4 relative z-20">
         <div className="flex flex-col items-center text-center">
           <div className={`overflow-hidden transition-all duration-1000 delay-300 will-change-transform ${inView ? 'opacity-100' : 'opacity-0'}`}>
-            <h2 className="text-xl md:text-3xl font-bold mb-6 overflow-hidden whitespace-nowrap animate-typewriter drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
-              <span className="text-pink-500">ROCK</span> / <span className="text-cyan-400">FUNK</span> DESDE SANTIAGO DE CHILE
+            <h2 className="text-xl md:text-3xl font-bold mb-6 overflow-hidden whitespace-pre-line animate-typewriter drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
+              <span className="inline text-pink-500">ROCK</span>
+              <span className="inline"> / </span>
+              <span className="inline text-cyan-400">FUNK</span>
+              <span className="block sm:inline"> DESDE SANTIAGO DE CHILE</span>
             </h2>
           </div>
 
