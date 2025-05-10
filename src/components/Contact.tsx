@@ -1,6 +1,12 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Mail, MapPin, Instagram, Youtube, AlignJustify as Spotify } from 'lucide-react';
+import { BiLogoGmail  } from "react-icons/bi";
+import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
+import { FaYahoo } from "react-icons/fa";
+
+
+
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -22,7 +28,6 @@ const Contact = () => {
   // Enlaces para cada servicio
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  const yahooUrl = `https://compose.mail.yahoo.com/?to=${email}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
   // Función para abrir el cliente de correo
   const handleContactClick = (email: string) => {
@@ -36,7 +41,7 @@ const Contact = () => {
       ref={ref}
     >
       <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-2xl mx-auto">
           <div className={`mb-12 transition-all duration-700 transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-center">
               <span className="font-['Permanent_Marker'] bg-gradient-to-r from-cyan-400 via-pink-500 to-yellow-400 text-transparent bg-clip-text">
@@ -46,111 +51,42 @@ const Contact = () => {
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-yellow-400 mx-auto mb-8"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-            <div className={`transition-all duration-700 delay-200 transform ${inView ? 'translate-x-0 opacity-100' : '-translate-x-10 opacity-0'}`}>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6">Escríbenos</h3>
-              
-              <p className="text-gray-300 mb-8">
-                ¿Quieres contratarnos para un evento? ¿Tienes alguna pregunta sobre nuestra música? No dudes en contactarnos para cualquier consulta.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <Mail className="w-6 h-6 text-pink-500 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-white mb-1">Email</h4>
-                    <span className="text-gray-400 select-all">{email}</span>
-                    <div className="flex gap-2 mt-2">
-                      <a href={isMobile ? mailtoUrl : gmailUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-pink-500 to-cyan-400 text-white rounded-lg text-xs font-bold hover:from-pink-400 hover:to-cyan-300 transition-all">Gmail</a>
-                      <a href={isMobile ? mailtoUrl : outlookUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg text-xs font-bold hover:from-blue-500 hover:to-cyan-300 transition-all">Outlook</a>
-                      <a href={isMobile ? mailtoUrl : yahooUrl} target="_blank" rel="noopener noreferrer" className="px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-400 text-white rounded-lg text-xs font-bold hover:from-purple-500 hover:to-pink-300 transition-all">Yahoo</a>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <MapPin className="w-6 h-6 text-pink-500 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-white mb-1">Ubicación</h4>
-                    <p className="text-gray-400">Santiago, Chile</p>
-                  </div>
-                </div>
-                
-                <div className="mt-8">
-                  <h4 className="font-bold text-white mb-3">Síguenos en redes sociales</h4>
-                  <div className="flex gap-4">
-                    <a 
-                      href="#instagram" 
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-600 to-yellow-400 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
-                    >
-                      <Instagram size={20} />
-                    </a>
-                    <a 
-                      href="#youtube" 
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-red-600 to-red-500 text-white hover:shadow-lg hover:shadow-red-500/30 transition-all duration-300"
-                    >
-                      <Youtube size={20} />
-                    </a>
-                    <a 
-                      href="#spotify" 
-                      className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-green-600 to-green-500 text-white hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300"
-                    >
-                      <Spotify size={20} />
-                    </a>
-                  </div>
+          <div className={`flex flex-col md:flex-row items-center gap-10 bg-gradient-to-br from-black/80 via-purple-900/60 to-black/80 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-600/30 p-10 transition-all duration-700 delay-200 ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>  
+            <div className="w-full flex flex-col items-center text-center space-y-8">
+              <div>
+                <h4 className="font-bold text-white mb-1 text-lg">Email</h4>
+                <span className="text-gray-300 select-all text-base">{email}</span>
+                <div className="flex gap-3 mt-4 justify-center">
+                  <a href={isMobile ? mailtoUrl : gmailUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-pink-500 to-cyan-400 text-white rounded-lg text-sm font-bold shadow-md hover:from-pink-400 hover:to-cyan-300 transition-all">
+                    <BiLogoGmail className="text-lg" /> Gmail
+                  </a>
+                  <a href={isMobile ? mailtoUrl : outlookUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-cyan-400 text-white rounded-lg text-sm font-bold shadow-md hover:from-blue-500 hover:to-cyan-300 transition-all">
+                    <PiMicrosoftOutlookLogoFill className="text-lg" /> Outlook
+                  </a>
+                  <a href={isMobile ? mailtoUrl : outlookUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-400 text-white rounded-lg text-sm font-bold shadow-md hover:from-purple-500 hover:to-pink-300 transition-all">
+                    <FaYahoo className="text-lg" /> Yahoo
+                  </a>
                 </div>
               </div>
-            </div>
-            
-            <div className={`transition-all duration-700 delay-400 transform ${inView ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'}`}>
-              <div className="bg-black/60 backdrop-blur-sm p-6 rounded-xl border border-pink-500/20">
-                <h3 className="text-2xl font-bold text-white mb-6">Enviar mensaje</h3>
-                
-                <form className="space-y-4">
-                  <div>
-                    <label htmlFor="name" className="block text-gray-300 mb-2 font-medium">
-                      Nombre
-                    </label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors duration-200"
-                      placeholder="Tu nombre"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-gray-300 mb-2 font-medium">
-                      Email
-                    </label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors duration-200"
-                      placeholder="tu@email.com"
-                    />
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="message" className="block text-gray-300 mb-2 font-medium">
-                      Mensaje
-                    </label>
-                    <textarea 
-                      id="message" 
-                      rows={4}
-                      className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-cyan-400 transition-colors duration-200"
-                      placeholder="Escribe tu mensaje aquí..."
-                    ></textarea>
-                  </div>
-                  
-                  <button 
-                    type="button"
-                    onClick={() => handleContactClick('contacto@sobrecarga.cl')}
-                    className="w-full py-3 bg-gradient-to-r from-pink-600 to-cyan-600 text-white font-bold rounded-lg hover:from-pink-500 hover:to-cyan-500 transition-all duration-300 shadow-lg shadow-pink-500/20"
+              <div className="flex items-center gap-3 justify-center mt-6">
+                <MapPin className="w-6 h-6 text-pink-500" />
+                <div>
+                  <h4 className="font-bold text-white mb-1 text-lg">Ubicación</h4>
+                  <p className="text-gray-300 text-base">Santiago, Chile</p>
+                </div>
+              </div>
+              <div className="mt-8">
+                <h4 className="font-bold text-white mb-3 text-lg">Síguenos en redes sociales</h4>
+                <div className="flex gap-4 justify-center">
+                  <a
+                    href={isMobile ? "instagram://user?username=_sobrecarga_" : "https://www.instagram.com/_sobrecarga_/"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-600 to-yellow-400 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300"
                   >
-                    Enviar Mensaje
-                  </button>
-                </form>
+                    <Instagram size={20} />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
