@@ -1,28 +1,39 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Music from './pages/Music';
-import Gallery from './pages/Gallery';
-import Contact from './pages/Contact';
+import Hero from './components/Hero';
+import About from './components/About';
+import Music from './components/Music';
+import Gallery from './components/Gallery';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 function App() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <Router>
-      <div className="font-sans bg-gradient-to-b from-gray-900 to-gray-800 text-white min-h-screen">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/music" element={<Music />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <div className="app">
+      <Navbar scrollPosition={scrollPosition} />
+      <main>
+        <Hero />
+        <About />
+        <Music />
+        <Gallery />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
   );
 }
 

@@ -23,17 +23,3 @@ dist-ssr
 *.sln
 *.sw?
 .env
-
-# Reportes de cobertura de tests
-coverage/
-
-# Cachés de herramientas
-.eslintcache
-.turbo
-.parcel-cache
-
-# Archivos temporales de sistema
-Thumbs.db
-
-# Archivos de salida de Vite SSR (si aplica)
-out/
