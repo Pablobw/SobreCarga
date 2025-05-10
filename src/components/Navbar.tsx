@@ -79,32 +79,33 @@ const Navbar = () => {
             </a>
           ))}
         </div>
+      </div>
 
-        <div 
-          className={`fixed inset-0 z-40 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center gap-8 transform transition-all duration-500 ${
-            isMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
-          } lg:hidden`}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú de navegación"
-        >
-          {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item, index) => (
-            <a
-              key={item}
-              href={`#${item}`}
-              className="text-white hover:text-cyan-400 transition-colors uppercase text-2xl font-bold tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-2"
-              style={{ 
-                animationDelay: `${index * 100}ms`,
-                opacity: isMenuOpen ? 1 : 0,
-                transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
-                transition: `all 0.3s ease ${index * 100}ms`
-              }}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item}
-            </a>
-          ))}
-        </div>
+      {/* Menú móvil fuera del contenedor principal para máxima cobertura */}
+      <div
+        className={`fixed inset-0 z-[9999] bg-black flex flex-col items-center justify-center gap-8 transition-all duration-500
+          ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+          lg:hidden`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú de navegación"
+      >
+        {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item, index) => (
+          <a
+            key={item}
+            href={`#${item}`}
+            className="text-white hover:text-cyan-400 transition-colors uppercase text-2xl font-bold tracking-wider focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-2"
+            style={{ 
+              animationDelay: `${index * 100}ms`,
+              opacity: isMenuOpen ? 1 : 0,
+              transform: isMenuOpen ? 'translateY(0)' : 'translateY(20px)',
+              transition: `all 0.3s ease ${index * 100}ms`
+            }}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            {item}
+          </a>
+        ))}
       </div>
     </nav>
   );

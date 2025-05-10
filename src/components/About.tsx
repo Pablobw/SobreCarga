@@ -42,7 +42,7 @@ const About = () => {
                 Somos más que una banda
               </h3>
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
-                Somos un dúo de Santiago de Chile que fusiona el poder del rock con los ritmos contagiosos del funk. Nacidos de la pasión por la música que desafía lo convencional, Sobrecarga llega para sacudir la escena musical chilena.
+                Somos cinco amigos de Santiago de Chile que fusionan el poder del rock con los ritmos contagiosos del funk. Nacidos de la pasión por la música que desafía lo convencional, Sobrecarga llega para sacudir la escena musical chilena.
               </p>
               <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
                 Con apenas cinco canciones, estamos comenzando nuestro viaje, pero cada nota está cargada de energía e intensidad. Nuestra música es un reflejo de nuestras influencias diversas y nuestra dedicación a crear algo verdaderamente único.
