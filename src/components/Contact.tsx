@@ -10,7 +10,7 @@ const Contact = () => {
     threshold: 0.1,
   });
 
-  const email = 'acunarojasvictor@gmail.com';
+  const email = 'sobrecarga.chile@gmail.com';
   const subject = 'Contacto para Sobrecarga';
   const body = 'Hola, me gustaría contactar con la banda Sobrecarga.';
   const isMobile = typeof window !== 'undefined' && /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
