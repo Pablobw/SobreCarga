@@ -3,6 +3,7 @@ import { MapPin, Instagram } from 'lucide-react';
 import { BiLogoGmail  } from "react-icons/bi";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
 import { FaYahoo, FaTiktok } from "react-icons/fa";
+import { RiSoundcloudLine } from "react-icons/ri";
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -107,6 +108,15 @@ const Contact = () => {
                     aria-label="Seguir en TikTok"
                   >
                     <FaTiktok size={20} />
+                  </a>
+                  <a
+                    href="https://on.soundcloud.com/4k5zJB6jhddZWHAP7"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-pink-500 text-white hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                    aria-label="Escuchar en SoundCloud"
+                  >
+                    <RiSoundcloudLine size={22} />
                   </a>
                 </div>
               </div>
