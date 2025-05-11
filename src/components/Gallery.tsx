@@ -54,11 +54,11 @@ const Integrantes = () => {
               />
             </div>
             <div className="flex-1 text-center md:text-left">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 text-transparent bg-clip-text animate-fadeInUp drop-shadow-[0_2px_10px_rgba(236,72,153,0.7)]">Claudio</h3>
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 text-transparent bg-clip-text animate-fadeInUp drop-shadow-[0_2px_10px_rgba(236,72,153,0.7)]">Claudinho</h3>
               <div className="w-16 h-1 mx-auto md:mx-0 bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 rounded-full mb-4 animate-fadeInUp"></div>
-              <h4 className="text-lg md:text-xl font-semibold text-cyan-400 mb-4 animate-fadeInUp drop-shadow-[0_2px_8px_rgba(34,211,238,0.5)]">Bajo</h4>
+              <h4 className="text-lg md:text-xl font-semibold text-cyan-400 mb-4 animate-fadeInUp drop-shadow-[0_2px_8px_rgba(34,211,238,0.5)]">Bajista.</h4>
               <p className="text-gray-200 leading-relaxed animate-fadeInUp bg-black/40 p-4 rounded-xl shadow-inner border border-pink-500/10">
-                Bajista de la banda. Amante de los grooves potentes y las líneas melódicas. Siempre aportando energía y ritmo al grupo.
+                La pasión por la música me ha llevado por diversos generos musicales, llegando a caer en sobrecarga, donde puedo expresar esos tonos graves que fluyen de mi querido Höfner bass, haciendo reír y mover a mis cabros de sobrecarga.
               </p>
             </div>
           </div>

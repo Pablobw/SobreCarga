@@ -2,7 +2,7 @@ import { useInView } from 'react-intersection-observer';
 import { MapPin, Instagram } from 'lucide-react';
 import { BiLogoGmail  } from "react-icons/bi";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
-import { FaYahoo } from "react-icons/fa";
+import { FaYahoo, FaTiktok } from "react-icons/fa";
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -98,6 +98,15 @@ const Contact = () => {
                     aria-label="Seguir en Instagram"
                   >
                     <Instagram size={20} />
+                  </a>
+                  <a
+                    href="https://www.tiktok.com/@sobrecarga.banda"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-black via-pink-500 to-cyan-400 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+                    aria-label="Seguir en TikTok"
+                  >
+                    <FaTiktok size={20} />
                   </a>
                 </div>
               </div>
