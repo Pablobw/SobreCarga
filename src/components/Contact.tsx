@@ -97,6 +97,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-pink-600 to-yellow-400 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
                     aria-label="Seguir en Instagram"
+                    title="Seguir en Instagram"
                   >
                     <Instagram size={20} />
                   </a>
@@ -106,6 +107,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-black via-pink-500 to-cyan-400 text-white hover:shadow-lg hover:shadow-pink-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
                     aria-label="Seguir en TikTok"
+                    title="Seguir en TikTok"
                   >
                     <FaTiktok size={20} />
                   </a>
@@ -115,6 +117,7 @@ const Contact = () => {
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-br from-orange-400 to-pink-500 text-white hover:shadow-lg hover:shadow-orange-500/30 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
                     aria-label="Escuchar en SoundCloud"
+                    title="Escuchar en SoundCloud"
                   >
                     <RiSoundcloudLine size={22} />
                   </a>
