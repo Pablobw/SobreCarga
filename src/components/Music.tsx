@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Volume2 } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { RiSoundcloudLine } from "react-icons/ri";
 
 const songList = [
   { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/images/DaLoMismo.png", audio: "/audios/da-lo-mismo.mp3" },
@@ -127,6 +128,18 @@ const Music = () => {
               </span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-cyan-400 to-pink-500 mx-auto mb-8"></div>
+            <div className="flex justify-center mt-4">
+              <a
+                href="https://on.soundcloud.com/4k5zJB6jhddZWHAP7"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-orange-400 to-pink-500 text-white font-bold shadow-lg hover:from-orange-500 hover:to-pink-600 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500"
+                title="Escuchar más en SoundCloud"
+              >
+                <span>Escuchar en SoundCloud</span>
+                <RiSoundcloudLine size={22} />
+              </a>
+            </div>
           </div>
 
           <div className={`bg-black/60 backdrop-blur-md rounded-xl overflow-hidden shadow-2xl shadow-pink-600/20 transition-all duration-700 delay-200 transform will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
