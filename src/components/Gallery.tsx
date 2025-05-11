@@ -82,6 +82,26 @@ const Integrantes = () => {
               </p>
             </div>
           </div>
+
+          <div className={`flex flex-col md:flex-row items-center gap-6 md:gap-10 bg-gradient-to-br from-black/80 via-purple-900/60 to-black/80 backdrop-blur-md rounded-3xl shadow-2xl shadow-pink-600/30 p-6 md:p-10 mt-10 transition-all duration-700 delay-400 will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}> 
+            <div className="w-64 sm:w-80 h-64 sm:h-80 rounded-2xl overflow-hidden bg-black flex items-center justify-center border-4 border-transparent group shadow-2xl relative transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_40px_10px_rgba(236,72,153,0.6)] before:content-[''] before:absolute before:inset-0 before:rounded-2xl before:pointer-events-none before:border-4 before:border-transparent before:bg-gradient-to-br before:from-pink-500 before:via-cyan-400 before:to-yellow-400 before:opacity-60 before:blur-md before:z-[-1]">
+              <img 
+                src="/images/Diego.jpg" 
+                alt="Diego - Vocalista"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                style={{ imageRendering: 'auto' }}
+              />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 text-transparent bg-clip-text animate-fadeInUp drop-shadow-[0_2px_10px_rgba(236,72,153,0.7)]">Diego</h3>
+              <div className="w-16 h-1 mx-auto md:mx-0 bg-gradient-to-r from-pink-500 via-cyan-400 to-yellow-400 rounded-full mb-4 animate-fadeInUp"></div>
+              <h4 className="text-lg md:text-xl font-semibold text-cyan-400 mb-4 animate-fadeInUp drop-shadow-[0_2px_8px_rgba(34,211,238,0.5)]">Vocalista</h4>
+              <p className="text-gray-200 leading-relaxed animate-fadeInUp bg-black/40 p-4 rounded-xl shadow-inner border border-pink-500/10">
+                La voz de la banda. Amante del metal, el indie en inglés y los boleros chilenos. Siempre buscando entregar bonitas letras a la banda.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
