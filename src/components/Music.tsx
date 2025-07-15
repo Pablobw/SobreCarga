@@ -4,10 +4,11 @@ import { useInView } from 'react-intersection-observer';
 import { RiSoundcloudLine } from "react-icons/ri";
 
 const songList = [
-  { id: 1, title: "Da Lo Mismo", duration: "3:45", logo: "/images/DaLoMismo.png", audio: "/audios/da-lo-mismo.mp3" },
-  { id: 2, title: "No Es Un Juego", duration: "4:12", logo: "/images/NoEsUnJuego.png", audio: "/audios/no-es-un-juego.mp3" },
-  { id: 3, title: "Tus Ojos", duration: "3:28", logo: "/images/TusOjos.png", audio: "/audios/tus-ojos.mp3" },
-  { id: 4, title: "Si Tu Voz Se Olvida", duration: "4:05", logo: "/images/situvozseolvida.jpg", audio: "/audios/si-tu-voz-se-olvida.mp3" }
+  { id: 1, title: "Da Lo Mismo", duration: "4:28", logo: "/images/DaLoMismo.png", audio: "/audios/da-lo-mismo.mp3" },
+  { id: 2, title: "No Es Un Juego", duration: "3:08", logo: "/images/NoEsUnJuego.png", audio: "/audios/no-es-un-juego.mp3" },
+  { id: 3, title: "Tus Ojos", duration: "4:23", logo: "/images/TusOjos.png", audio: "/audios/tus-ojos.mp3" },
+  { id: 4, title: "Si Tu Voz Se Olvida", duration: "3:14", logo: "/images/situvozseolvida.jpg", audio: "/audios/si-tu-voz-se-olvida.mp3" },
+  { id: 5, title: "Quisiera Estar", duration: "2:27", logo: "/images/QuisieraEstar.png", audio: "/audios/quisiera-estar.mp3" }
 ];
 
 const Music = () => {
