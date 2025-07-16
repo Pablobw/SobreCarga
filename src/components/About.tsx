@@ -24,7 +24,7 @@ const About = () => {
                 Sobre Nosotros
               </span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-cyan-400 mx-auto mb-8"></div>
+
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 items-center">

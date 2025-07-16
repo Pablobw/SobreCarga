@@ -85,15 +85,257 @@ body {
   animation: scrollIndicator 1.5s ease-in-out infinite;
 }
 
-/* Animación para las barras de sonido */
+/* Animación para ondas de sonido */
 @keyframes soundbar {
-  0%, 100% { height: 30%; }
-  50% { height: 100%; }
+  0%, 100% { 
+    transform: scaleY(0.3);
+  }
+  50% { 
+    transform: scaleY(1);
+  }
 }
 
 .animate-soundbar {
   animation: soundbar 1s ease-in-out infinite;
   height: 16px;
+}
+
+/* Animaciones para ondas de mar circulares que se expanden */
+@keyframes wave-expand-1 {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-expand-2 {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-expand-3 {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes wave-expand-extra {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes foam-float {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px);
+  }
+  75% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0;
+  }
+}
+
+/* Las animaciones de ondas de mar se aplican directamente en el estilo inline */
+
+/* Efecto de ondas de sonido para canciones reproduciéndose */
+@keyframes sound-wave {
+  0%, 100% {
+    transform: scaleY(0.3);
+  }
+  25% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.7);
+  }
+  75% {
+    transform: scaleY(1.2);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(255, 0, 255, 0.3), 0 0 10px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.5), 0 0 25px rgba(0, 255, 255, 0.4);
+  }
+}
+
+@keyframes energy-text {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+  25% {
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.7), 0 0 15px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 0, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.6);
+  }
+  75% {
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.7), 0 0 15px rgba(0, 255, 255, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(255, 0, 255, 0.5), 0 0 10px rgba(0, 255, 255, 0.3);
+  }
+}
+
+@keyframes wave-particles {
+  0% {
+    transform: translateX(-100%) translateY(0);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(-20px);
+    opacity: 0;
+  }
+}
+
+/* Efectos de ondas animadas */
+@keyframes wave-1 {
+  0% {
+    transform: translateX(-100%) scaleY(0.5);
+  }
+  50% {
+    transform: translateX(0%) scaleY(1.2);
+  }
+  100% {
+    transform: translateX(100%) scaleY(0.5);
+  }
+}
+
+@keyframes wave-2 {
+  0% {
+    transform: translateX(-100%) scaleY(0.8);
+  }
+  50% {
+    transform: translateX(0%) scaleY(0.6);
+  }
+  100% {
+    transform: translateX(100%) scaleY(0.8);
+  }
+}
+
+@keyframes wave-3 {
+  0% {
+    transform: translateX(-100%) scaleY(0.3);
+  }
+  50% {
+    transform: translateX(0%) scaleY(1.5);
+  }
+  100% {
+    transform: translateX(100%) scaleY(0.3);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+@keyframes music-notes {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.playing-glitch {
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.1s ease-out;
+}
+
+.playing-glitch::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+.playing-glitch-text {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  transition: text-shadow 0.1s ease-out;
 }
 
 /* Aspect ratio para imágenes */
