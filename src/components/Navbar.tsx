@@ -100,10 +100,16 @@ const Navbar = () => {
             &times;
           </button>
           <nav className="flex flex-col items-center gap-8 mt-8">
-            {['INICIO', 'NOSOTROS', 'MÚSICA', 'INTEGRANTES', 'CONTACTO'].map((item, index) => (
+            {[
+              { text: 'INICIO', href: 'inicio' },
+              { text: 'NOSOTROS', href: 'nosotros' },
+              { text: 'MÚSICA', href: 'musica' },
+              { text: 'INTEGRANTES', href: 'integrantes' },
+              { text: 'CONTACTO', href: 'contacto' }
+            ].map((item, index) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.text}
+                href={`#${item.href}`}
                 className="text-white text-3xl font-extrabold tracking-widest uppercase transition-colors duration-200 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg px-4 py-2"
                 style={{
                   transitionDelay: `${index * 80}ms`,
@@ -114,7 +120,7 @@ const Navbar = () => {
                 tabIndex={0}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {item}
+                {item.text}
               </a>
             ))}
           </nav>
