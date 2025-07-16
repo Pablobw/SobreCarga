@@ -48,15 +48,15 @@ const Hero = () => {
           {/* Gradientes para desvanecimiento hacia los lados */}
           <div className="absolute inset-0 z-10 pointer-events-none">
             {/* Sombra izquierda */}
-            <div className="absolute left-0 top-0 w-2/5 h-full bg-gradient-to-r from-black via-black/95 to-transparent"></div>
+            <div className="absolute left-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-r from-black via-black/80 md:via-black/95 to-transparent"></div>
             {/* Sombra derecha */}
-            <div className="absolute right-0 top-0 w-2/5 h-full bg-gradient-to-l from-black via-black/95 to-transparent"></div>
+            <div className="absolute right-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-l from-black via-black/80 md:via-black/95 to-transparent"></div>
             {/* Sombra superior */}
-            <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent"></div>
+            <div className="absolute top-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-b from-black via-black/60 md:via-black/80 to-transparent"></div>
             {/* Sombra inferior */}
-            <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-t from-black via-black/60 md:via-black/80 to-transparent"></div>
             {/* Gradiente radial central para suavizar el centro */}
-            <div className="absolute inset-0 bg-radial-gradient"></div>
+            <div className="absolute inset-0 bg-radial-gradient-mobile md:bg-radial-gradient"></div>
           </div>
         </div>
         
