@@ -33,7 +33,7 @@ const Hero = () => {
     >
       <div className="absolute inset-0 bg-black">
         {/* Imagen de fondo con efecto de desvanecimiento hacia los lados */}
-        <div className="absolute inset-0 w-full h-full">
+        <div className="absolute inset-0 w-full h-full pointer-events-none">
           <img 
             src="/images/Logo1.png" 
             alt="Sobrecarga Logo"
@@ -48,25 +48,25 @@ const Hero = () => {
           {/* Gradientes para desvanecimiento hacia los lados */}
           <div className="absolute inset-0 z-10 pointer-events-none">
             {/* Sombra izquierda */}
-            <div className="absolute left-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-r from-black via-black/80 md:via-black/95 to-transparent"></div>
+            <div className="absolute left-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-r from-black via-black/80 md:via-black/95 to-transparent pointer-events-none"></div>
             {/* Sombra derecha */}
-            <div className="absolute right-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-l from-black via-black/80 md:via-black/95 to-transparent"></div>
+            <div className="absolute right-0 top-0 w-1/4 md:w-2/5 h-full bg-gradient-to-l from-black via-black/80 md:via-black/95 to-transparent pointer-events-none"></div>
             {/* Sombra superior */}
-            <div className="absolute top-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-b from-black via-black/60 md:via-black/80 to-transparent"></div>
+            <div className="absolute top-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-b from-black via-black/60 md:via-black/80 to-transparent pointer-events-none"></div>
             {/* Sombra inferior */}
-            <div className="absolute bottom-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-t from-black via-black/60 md:via-black/80 to-transparent"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1/4 md:h-1/3 bg-gradient-to-t from-black via-black/60 md:via-black/80 to-transparent pointer-events-none"></div>
             {/* Gradiente radial central para suavizar el centro */}
-            <div className="absolute inset-0 bg-radial-gradient-mobile md:bg-radial-gradient"></div>
+            <div className="absolute inset-0 bg-radial-gradient-mobile md:bg-radial-gradient pointer-events-none"></div>
           </div>
         </div>
         
-        <div className="absolute inset-0 bg-black/70 md:bg-black/40 z-20"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50 z-30"></div>
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute inset-0 bg-black/70 md:bg-black/40 z-20 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50 z-30 pointer-events-none"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40 pointer-events-none"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40 pointer-events-none" style={{ animationDelay: '1s' }}></div>
         <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-50 pointer-events-none"></div>
       </div>
-      <div className="container mx-auto px-4 relative z-20">
+      <div className="container mx-auto px-4 relative z-50">
         <div className="flex flex-col items-center text-center">
           <div className={`overflow-hidden transition-all duration-1000 delay-300 will-change-transform ${inView ? 'opacity-100' : 'opacity-0'}`}>
             <h2 className="text-xl md:text-3xl font-bold mb-6 overflow-hidden whitespace-pre-line animate-typewriter drop-shadow-[0_2px_10px_rgba(0,0,0,0.7)]">
@@ -80,20 +80,20 @@ const Hero = () => {
           <div className={`flex flex-col sm:flex-row gap-4 mt-8 transition-all duration-1000 delay-500 transform will-change-transform ${inView ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
             <a 
               href="#musica" 
-              className="px-8 py-3 bg-gradient-to-r from-pink-600 to-pink-500 text-white font-bold rounded-full hover:from-pink-500 hover:to-pink-400 transition-all duration-300 shadow-lg shadow-pink-500/30 uppercase tracking-wide text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500"
+              className="px-8 py-3 bg-gradient-to-r from-pink-600 to-pink-500 text-white font-bold rounded-full hover:from-pink-500 hover:to-pink-400 transition-all duration-300 shadow-lg shadow-pink-500/30 uppercase tracking-wide text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 relative z-10"
             >
               Escuchar Ahora
             </a>
             <a 
               href="#contacto" 
-              className="px-8 py-3 bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold rounded-full hover:bg-cyan-400/10 transition-all duration-300 uppercase tracking-wide text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400"
+              className="px-8 py-3 bg-transparent border-2 border-cyan-400 text-cyan-400 font-bold rounded-full hover:bg-cyan-400/10 transition-all duration-300 uppercase tracking-wide text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 relative z-10"
             >
               Contactar
             </a>
           </div>
         </div>
       </div>
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce will-change-transform z-20">
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce will-change-transform z-50">
         <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center pt-1">
           <div className="w-1 h-3 bg-white/50 rounded-full animate-scrollIndicator"></div>
         </div>
