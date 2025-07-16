@@ -38,6 +38,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Gradiente radial personalizado para el Hero */
+.bg-radial-gradient {
+  background: radial-gradient(ellipse at center, transparent 0%, transparent 10%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.8) 75%, rgba(0, 0, 0, 0.95) 100%);
+}
+
 /* Animación de efecto máquina de escribir */
 .animate-typewriter {
   overflow: hidden;

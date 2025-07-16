@@ -32,22 +32,39 @@ const Hero = () => {
       ref={ref}
     >
       <div className="absolute inset-0 bg-black">
-        <img 
-          src="/images/Logo1.png" 
-          alt="Sobrecarga Logo"
-          className="absolute inset-0 w-full h-full object-cover md:object-contain opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none transition-opacity duration-500 will-change-opacity"
-          style={{ 
-            animationDuration: '4s', 
-            opacity: logoOpacity * 0.3,
-            transform: 'translateZ(0)'
-          }}
-          loading="eager"
-        />
-        <div className="absolute inset-0 bg-black/70 md:bg-black/40 z-10"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50"></div>
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse will-change-transform"></div>
-        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse will-change-transform" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-10 pointer-events-none"></div>
+        {/* Imagen de fondo con efecto de desvanecimiento hacia los lados */}
+        <div className="absolute inset-0 w-full h-full">
+          <img 
+            src="/images/Logo1.png" 
+            alt="Sobrecarga Logo"
+            className="absolute inset-0 w-full h-full object-cover md:object-contain opacity-30 blur-sm animate-pulse z-0 pointer-events-none select-none transition-opacity duration-500 will-change-opacity"
+            style={{ 
+              animationDuration: '4s', 
+              opacity: logoOpacity * 0.3,
+              transform: 'translateZ(0)'
+            }}
+            loading="eager"
+          />
+          {/* Gradientes para desvanecimiento hacia los lados */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            {/* Sombra izquierda */}
+            <div className="absolute left-0 top-0 w-2/5 h-full bg-gradient-to-r from-black via-black/95 to-transparent"></div>
+            {/* Sombra derecha */}
+            <div className="absolute right-0 top-0 w-2/5 h-full bg-gradient-to-l from-black via-black/95 to-transparent"></div>
+            {/* Sombra superior */}
+            <div className="absolute top-0 left-0 w-full h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent"></div>
+            {/* Sombra inferior */}
+            <div className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+            {/* Gradiente radial central para suavizar el centro */}
+            <div className="absolute inset-0 bg-radial-gradient"></div>
+          </div>
+        </div>
+        
+        <div className="absolute inset-0 bg-black/70 md:bg-black/40 z-20"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(120,40,150,0.2)_1px,transparent_1px)] bg-[length:30px_30px] opacity-50 z-30"></div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-pink-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40"></div>
+        <div className="absolute bottom-1/3 right-1/3 w-96 h-96 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse will-change-transform z-40" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-b from-transparent to-black z-50 pointer-events-none"></div>
       </div>
       <div className="container mx-auto px-4 relative z-20">
         <div className="flex flex-col items-center text-center">
