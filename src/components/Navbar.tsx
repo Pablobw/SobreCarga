@@ -69,16 +69,16 @@ const Navbar = () => {
           </button>
 
           <div className="hidden lg:flex items-center gap-8">
-            {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className="relative text-white hover:text-cyan-400 transition-colors duration-300 uppercase text-sm font-bold tracking-wider group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-1"
-              >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
+                            {['inicio', 'evento', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
+                  <a
+                    key={item}
+                    href={`#${item}`}
+                    className="relative text-white hover:text-cyan-400 transition-colors duration-300 uppercase text-sm font-bold tracking-wider group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg p-1"
+                  >
+                    {item}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                  </a>
+                ))}
           </div>
         </div>
       </nav>
@@ -100,29 +100,30 @@ const Navbar = () => {
             &times;
           </button>
           <nav className="flex flex-col items-center gap-8 mt-8">
-            {[
-              { text: 'INICIO', href: 'inicio' },
-              { text: 'NOSOTROS', href: 'nosotros' },
-              { text: 'MÚSICA', href: 'musica' },
-              { text: 'INTEGRANTES', href: 'integrantes' },
-              { text: 'CONTACTO', href: 'contacto' }
-            ].map((item, index) => (
-              <a
-                key={item.text}
-                href={`#${item.href}`}
-                className="text-white text-3xl font-extrabold tracking-widest uppercase transition-colors duration-200 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg px-4 py-2"
-                style={{
-                  transitionDelay: `${index * 80}ms`,
-                  opacity: 1,
-                  transform: 'translateY(0)',
-                  transition: `all 0.3s cubic-bezier(0.4,0,0.2,1) ${index * 80}ms`
-                }}
-                tabIndex={0}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.text}
-              </a>
-            ))}
+                            {[
+                  { text: 'INICIO', href: 'inicio' },
+                  { text: 'EVENTO', href: 'evento' },
+                  { text: 'NOSOTROS', href: 'nosotros' },
+                  { text: 'MÚSICA', href: 'musica' },
+                  { text: 'INTEGRANTES', href: 'integrantes' },
+                  { text: 'CONTACTO', href: 'contacto' }
+                ].map((item, index) => (
+                  <a
+                    key={item.text}
+                    href={`#${item.href}`}
+                    className="text-white text-3xl font-extrabold tracking-widest uppercase transition-colors duration-200 hover:text-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 rounded-lg px-4 py-2"
+                    style={{
+                      transitionDelay: `${index * 80}ms`,
+                      opacity: 1,
+                      transform: 'translateY(0)',
+                      transition: `all 0.3s cubic-bezier(0.4,0,0.2,1) ${index * 80}ms`
+                    }}
+                    tabIndex={0}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.text}
+                  </a>
+                ))}
           </nav>
         </div>
       )}

@@ -22,7 +22,7 @@ const Contact = () => {
   return (
     <section 
       id="contacto" 
-      className="py-20 relative bg-gradient-to-b from-black to-purple-900/30"
+      className="py-20 relative bg-dark"
       ref={ref}
     >
       <div className="container mx-auto px-4 relative z-10">

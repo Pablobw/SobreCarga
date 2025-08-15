@@ -13,7 +13,7 @@ const Footer = () => {
             </div>
             
             <div className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-6 md:mb-0">
-              {['inicio', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
+              {['inicio', 'evento', 'nosotros', 'musica', 'integrantes', 'contacto'].map((item) => (
                 <a
                   key={item}
                   href={`#${item}`}

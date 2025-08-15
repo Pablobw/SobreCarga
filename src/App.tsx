@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Music from './components/Music';
 import Gallery from './components/Gallery';
+import Event from './components/Event';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { Loader } from './components/Loader';
@@ -29,6 +30,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
+        <Event />
         <About />
         <Music />
         <Gallery />
