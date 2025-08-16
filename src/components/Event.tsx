@@ -14,6 +14,17 @@ const Event = () => {
            <div className="w-24 h-1 bg-gradient-to-r from-pink-500 to-cyan-500 mx-auto"></div>
          </div>
 
+         {/* Imagen del cartel del evento */}
+         <div className="text-center mb-12">
+           <div className="max-w-2xl mx-auto">
+             <img 
+               src="/images/SobrecargaEnVivo.jpg" 
+               alt="Sobre Carga EN VIVO - 28 de Agosto - Bar La Casa en el Aire" 
+               className="w-full h-auto rounded-2xl shadow-2xl shadow-pink-500/30 border-2 border-pink-500/30 hover:scale-105 transition-transform duration-300"
+             />
+           </div>
+         </div>
+
          {/* Contenido principal del evento */}
          <div className="max-w-5xl mx-auto">
                        {/* Tarjeta unificada del evento */}
